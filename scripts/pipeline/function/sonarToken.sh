@@ -1,0 +1,1 @@
+sed -i '4  a   sonar_login='"$SONAR_TOKEN"'' gradle.properties

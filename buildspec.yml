@@ -1,0 +1,32 @@
+#version: 0.2
+#
+#
+#
+#
+#phases:
+#  install:
+#    runtime-versions:
+#      java: corretto11
+#      docker: 19
+#
+#
+#
+#  build:
+#    commands:
+##      - sh ./scripts/pipeline/function/downloadCaCerts.sh
+#      - ./scripts/pipeline/pipeline.sh
+#
+#  post_build:
+#    commands:
+#    #
+#    # Zip up your required files for deployment
+#    #
+#      - ZIP_FILENAME=$(echo $CODEBUILD_WEBHOOK_TRIGGER | cut -d '/' -f 2)-${CODEBUILD_BUILD_NUMBER}-deployment.zip
+#      - zip ${ZIP_FILENAME} -r .
+#    #
+#    # Upload your deployment.zip to the build S3 bucket
+#    #
+#      - ZIP_UPLOAD_PATH="${PROMOTIONS_BUCKET}/${GITHUB_REPOSITORY}/${ZIP_FILENAME}"
+#      - aws s3 cp ${ZIP_FILENAME} s3://${ZIP_UPLOAD_PATH}
+#    #
+#    # Call the Supply-chain CLI with your zipfile as the target to initiate the deployment

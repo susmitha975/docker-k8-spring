@@ -1,0 +1,1 @@
+curl --noproxy 'ca.service.cnqr.tech' http://ca.service.cnqr.tech/v1/trust/bundle.crt > ./server-ca-bundle.pem
