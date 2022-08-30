@@ -1,9 +1,46 @@
 version: 0.2
 
+env:
+  #
+  # List of secrets (how to create : https://wiki.concur.com/confluence/display/CSS/Secret+Management+-+Release+Pipeline)
+  #
+
+  #
+  # List of variables
+  #
+  variables:
+    GIT_BRANCH: "FizzBuzz1" # to be computed in pre-build phase
+    GITHUB_CLI_VERSION: "2.7.0"
+    GITHUB_REPOSITORY: "docker-k8-spring"
+    GITHUB_API_TOKEN :  "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"
+
+
+
 phases:
   install:
     runtime-versions:
       java: corretto8
+      docker: 19
+    commands:
+      # Install GitHub CLI
+      - rpm -i https://github.com/cli/cli/releases/download/v${GITHUB_CLI_VERSION}/gh_${GITHUB_CLI_VERSION}_linux_386.rpm
+  pre_build:
+    on-failure: ABORT
+    commands:
+      # Connects to GitHub
+      - echo ${GITHUB_API_TOKEN} | gh auth login --hostname github.concur.com --with-token
+      # Pull shared scripts
+      - gh auth setup-git
+      #- gh repo clone eden/secure-pipeline-scripts
+      # Allows execution of embedded pipeline scripts and functions
+      - chmod +x -R ./scripts/*
+      #- chmod +x -R ./secure-pipeline-scripts/*
+      # Set WORKDIR
+      - WORKDIR=$(pwd)
+      # Identify the current branch name
+      - GIT_BRANCH="FizzBuzz1"
+      - echo ">>> Branch -> ${GIT_BRANCH}"
+
   build:
     commands:
       - echo Build started on `date`
