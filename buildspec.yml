@@ -11,7 +11,7 @@ env:
   variables:
     GIT_BRANCH: "FizzBuzz1" # to be computed in pre-build phase
     GITHUB_CLI_VERSION: "2.7.0"
-    GITHUB_REPOSITORY: "docker-k8-spring"
+    GITHUB_REPOSITORY: "susmitha975/docker-k8-spring"
     GITHUB_API_TOKEN :  "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"
 
 
@@ -19,7 +19,7 @@ env:
 phases:
   install:
     runtime-versions:
-      java: corretto8
+      java: corretto11
       docker: 19
     commands:
       # Install GitHub CLI
