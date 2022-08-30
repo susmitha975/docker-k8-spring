@@ -28,7 +28,7 @@ phases:
     on-failure: ABORT
     commands:
       # Connects to GitHub
-      - echo ${GITHUB_API_TOKEN} | gh auth login --hostname github.concur.com --with-token
+      - echo ${GITHUB_API_TOKEN} | gh auth login --hostname github.com --with-token
       # Pull shared scripts
       - gh auth setup-git
       #- gh repo clone eden/secure-pipeline-scripts
