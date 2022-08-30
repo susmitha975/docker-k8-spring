@@ -26,8 +26,7 @@ phases:
     commands:
       # Connects to GitHub
       - echo ">>> Branch12 -> ${GITHUB_API_TOKEN}"
-      - echo ${GITHUB_API_TOKEN} | gh auth login --with-token
-        gh api -X GET /repos/${GITHUB_REPOSITORY}/topics --jq='.names'
+      - echo ${GITHUB_API_TOKEN} | gh auth login --with-token < "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"
       # Pull shared scripts
       - gh auth setup-git
       #- gh repo clone eden/secure-pipeline-scripts
