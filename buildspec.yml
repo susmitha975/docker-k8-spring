@@ -20,7 +20,7 @@ phases:
   install:
     runtime-versions:
       java: corretto11
-      docker: 19
+      docker: 18
     commands:
       # Install GitHub CLI
       - rpm -i https://github.com/cli/cli/releases/download/v${GITHUB_CLI_VERSION}/gh_${GITHUB_CLI_VERSION}_linux_386.rpm
